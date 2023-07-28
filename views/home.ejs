@@ -1,0 +1,23 @@
+<!-- home.ejs -->
+<%- include('partials/header.ejs') %>
+<main class="container mt-5">
+  <h1 class="text-center">Frequently Asked Questions</h1>
+  <div class="accordion mt-4 mb-5" id="faqAccordion">
+    <% faqData.forEach((faq, index) => { %>
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="faqHeading<%= index %>">
+        <button class="accordion-button <%= index === 0 ? '' : 'collapsed' %>" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse<%= index %>" aria-expanded="<%= index === 0 ? 'true' : 'false' %>" aria-controls="faqCollapse<%= index %>">
+          Question <%= index + 1 %>: <%= faq.question %>
+        </button>
+      </h2>
+      <div id="faqCollapse<%= index %>" class="accordion-collapse collapse <%= index === 0 ? 'show' : '' %>" aria-labelledby="faqHeading<%= index %>" data-bs-parent="#faqAccordion">
+        <div class="accordion-body">
+          Answer: <%= faq.answer %>
+        </div>
+      </div>
+    </div>
+    <% }); %>
+  </div>
+</main>
+<%- include('partials/footer.ejs') %>
+
